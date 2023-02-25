@@ -4,7 +4,7 @@ Iris de Gélis, Sébastien Lefèvre and Thomas Corpetti (Submitted to TGRS Journ
 This Git project is built upon Torch-Point3D depository to share code for DeepCluster 3D Change Detection (DC3DCD) weakly supervised networks for 3D point clouds change segmentation and classification respectively based on Siamese KPConv and Encoder Fusion SiamKPConv. 
 
 <p align="center">
-   <img src="docs/imgs/DC3DCD.pdf" >      
+   <img src="docs/imgs/DC3DCD.png" >      
 </p>
 
 
