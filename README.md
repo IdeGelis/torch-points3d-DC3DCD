@@ -1,10 +1,10 @@
-# Variants of Siamese KPConv networks
-Iris de Gélis, Sébastien Lefèvre and Thomas Corpetti (ISPRS Journal, 2023)
+# DeepCluster 3D Change Detection (DC3DCD)
+Iris de Gélis, Sébastien Lefèvre and Thomas Corpetti (Submitted to TGRS Journal, 2023)
 
-This Git project is built upon Torch-Point3D depository to share code for Siamese KPConv and Siamese KPConv Cls networks for 3D point clouds change segmentation and classification respectively. See our paper:
+This Git project is built upon Torch-Point3D depository to share code for DeepCluster 3D Change Detection (DC3DCD) weakly supervised networks for 3D point clouds change segmentation and classification respectively based on Siamese KPConv and Encoder Fusion SiamKPConv. 
 
 <p align="center">
-   <img src="docs/imgs/SiamKPConv.png" >      
+   <img src="docs/imgs/DC3DCD.pdf" >      
 </p>
 
 
@@ -73,9 +73,9 @@ As a general philosophy we have split datasets and models by task. For example, 
 where each folder contains the dataset related to each task.
 
 ## Methods currently implemented
-- **[OneConvFusion]
-- **[Encoder Fusion SiamKPConv]
-- **[Triplet KPConv]
+- **DC3DCD**
+- **DC3DCD-V2**
+- **[Encoder Fusion SiamKPConv]**
 - **[SiameseKPConv] from Iris de Gélis  _et al._: [Siamese KPConv: 3D multiple change detection from raw point clouds using deep learning](https://www.sciencedirect.com/science/article/pii/S0924271623000394)
 - **[SiameseKPConvCls] from Iris de Gélis  _et al._: [Siamese KPConv: 3D multiple change detection from raw point clouds using deep learning](https://www.sciencedirect.com/science/article/pii/S0924271623000394)
 - **[PointNet](https://github.com/nicolas-chaulet/torch-points3d/blob/master/torch_points3d/modules/PointNet/modules.py#L54)** from Charles R. Qi _et al._: [PointNet: Deep Learning on Point Sets for 3D Classification and Segmentation](https://arxiv.org/abs/1612.00593) (CVPR 2017)
