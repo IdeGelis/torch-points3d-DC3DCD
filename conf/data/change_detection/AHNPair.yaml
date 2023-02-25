@@ -1,0 +1,24 @@
+data:
+  class: AHN_deepCluster.AHNDataset_deepCluster
+  dataset_name: "AHN"
+  task: change_detection
+  dataTrainFile: /gpfswork/rech/rin/utf14pr/dataset/AHN/DS_4Classes_Divided2_forRF/Train-tiny/ #/gpfswork/rech/rin/utf14pr/dataset/AHN/DS_4Classes_new_Divided/
+  dataValFile: /gpfswork/rech/rin/utf14pr/dataset/AHN/DS_4Classes_Divided2_forRF/Val/ #/share/projects/deep3dt/datasets/AHN/DS_4Classes_new_Divided/Val/ #
+  dataTestFile: /gpfswork/rech/rin/utf14pr/dataset/AHN/CleanManually/ #37EN1_08_full/ #CleanManually/ #/share/projects/deep3dt/datasets/AHN/DS_4Classes_new_Divided/Test/ #
+  dataroot: data
+  preprocessed_dir: /gpfswork/rech/rin/utf14pr/dev/torch-points3d/data/${data.dataset_name}/AHN-37EN1_08-cmAll/ #/gpfswork/rech/rin/utf14pr/
+  first_subsampling: 0.5  # Grid size of the input data
+  use_category: False # Use object category information
+  radius: 25
+  sample_per_epoch: 6000
+  dcva_binary_GT: False
+  fix_cyl: False # Fix cylinder a special seed and do not apply DA --> for transfer learning tests
+  DA: True # Make data augmentation for train ds
+  pre_transforms: # Offline transforms, done only once
+    - transform: GridSampling3D
+      params:
+        size: ${data.first_subsampling}
+
+
+  load_preprocessed: False # Whether to load or not pre_transform point clouds, if not original files will be computed again
+  load_trees: False # Whether to load or not kd trees if possible

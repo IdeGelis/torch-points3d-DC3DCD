@@ -1,0 +1,45 @@
+# Those arguments defines the training hyper-parameters
+training:
+    epochs: 150
+    num_workers: 10
+    batch_size: 10
+    shuffle: True
+    cuda: 0 # -1 -> no cuda otherwise takes the specified index
+    precompute_multi_scale: False # Compute multiscate features on cpu for faster training / inference
+    optim:
+        base_lr: 0.001 # 0.01 0.001-->DC
+        grad_clip: 100
+        optimizer:
+            class: SGD #Adam
+            params:
+                momentum: 0.98
+                lr: ${training.optim.base_lr} # The path is cut from training
+                weight_decay: 1e-3
+        lr_scheduler: ${lr_scheduler}
+        bn_scheduler:
+            bn_policy: "step_decay"
+            params:
+                bn_momentum: 0.02
+                bn_decay: 0.9
+                decay_step : 1000
+                bn_clip : 1e-2
+        early_stop: -1 # Set to -1 if no early stopping wanted else indicate the number of step with augmentation of miou_ch on val ds
+    weight_name: "latest" # Used during resume, select with model to load from [miou, macc, acc..., latest]
+    enable_cudnn: True
+    checkpoint_dir: ""
+# Those arguments within experiment defines which model, dataset and task to be created for benchmarking
+# parameters for Weights and Biases
+wandb:
+    entity: ""
+    project: "change_detection_deepcluster"
+    log: False
+    notes: "Urb3DCD Lid05   siamencfusionskipkpconv_dc  3000 cyl LR 0.001 "
+    name: "Urb3DCD Lid05  siamencfusionskipkpconv_dc 3000cyl Y from C2C + tran "
+    public: True # It will be display the model within wandb log, else not.
+    config:
+        model_name: ${model_name}
+
+
+# parameters for TensorBoard Visualization
+tensorboard:
+    log: False

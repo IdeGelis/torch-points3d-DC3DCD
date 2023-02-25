@@ -1,0 +1,24 @@
+data:
+  class: Urb3DCD_deepCluster.Urb3DCDDataset_deepCluster #Urb3DCD_deepCluster_dualT.Urb3DCDDataset_deepCluster_dualT
+  dataset_name: "Urb3DSimul"
+  task: change_detection
+  dataTrainFile:  /share/projects/deep3dt/datasets/Simul/CDBiDate/IEEE_Dataset_V2/1-Lidar05/Train/ #/gpfswork/rech/rin/utf14pr/dataset/Urb3DSimul/IEEE_Dataset_V1/5-MultiSensor/Train/ #
+  dataValFile:  /share/projects/deep3dt/datasets/Simul/CDBiDate/IEEE_Dataset_V2/1-Lidar05/Val/ #/gpfswork/rech/rin/utf14pr/dataset/Urb3DSimul/IEEE_Dataset_V1/5-MultiSensor/Val/ #
+  dataTestFile:  /share/projects/deep3dt/datasets/Simul/CDBiDate/IEEE_Dataset_V2/1-Lidar05/Test/ #/gpfswork/rech/rin/utf14pr/dataset/Urb3DSimul/IEEE_Dataset_V1/5-MultiSensor/Train/ #
+  dataroot: data
+  preprocessed_dir: /share/home/degelis/dev/torch-points3d/data/${data.dataset_name}/testets/ #/gpfswork/rech/rin/utf14pr/dev/torch-points3d/data/${data.dataset_name}/5-MultiSensor/ #
+  nameInPly: "params" # IEEE V1 : "Urb3DSimul" / IEEE V2:"Params"
+  first_subsampling: 1 #0.05 # Grid size of the input data
+  use_category: False # Use object category information
+  radius: 50
+  sample_per_epoch: 6000
+  fix_cyl: False # Fix cylinder a special seed and do not apply DA --> for transfer learning tests
+  DA: True # Make data augmentation for train ds
+  pre_transforms: # Offline transforms, done only once
+    - transform: GridSampling3D
+      params:
+        size: ${data.first_subsampling}
+
+
+  load_preprocessed: False # Wether to load or not pre_transform point clouds, if not original files will be computed again
+  load_trees: False # Wether to load or not kd trees if possible

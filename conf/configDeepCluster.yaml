@@ -1,0 +1,44 @@
+defaults: # for loading the default config
+  - task: change_detection # Task performed (segmentation, classification etc...)
+    optional: True
+  - model_type: siamencfusionskipkpconv_dc #siamesekpconv_dc #siamesekpconv_dc_dualT siamencfusionskipkpconv_dc #siamencfusionskipkpconv_dc_dualT # Type of model to use, e.g. pointnet2, rsconv etc...
+    optional: True
+  - dataset: Urb3DSimulPair # AHN: AHNPair Urb3DDS: Urb3DSimulPair LETG: LETGCliffs SHREC21:
+    optional: True
+
+  - visualization: default
+  - lr_scheduler: exponential #exponential
+  - training: defaultUrb3D
+
+  - debugging: default.yaml
+  - models: ${defaults.0.task}/${defaults.1.model_type}
+  - data: ${defaults.0.task}/${defaults.2.dataset}
+  - hydra/job_logging: custom
+  - hydra/output: custom  # add the support for user-defined experiment folder (where to save the experiment files)
+
+
+deepclustering: #deep cluster parameters
+    type:  Kmeans
+    nb_cluster_cd: 1000
+    nb_cluster_seg: 4 #32
+    kmeans_n_iter: 20
+#    seed: 1234
+    num_init_batches: 50 # for mini-batch k-means :  nb of initial batch to compute before launching the first kmeans
+    num_batches: 50 # for mini-batch k-means : nb of batch between each kmeans
+    pre_train_kmean: 0
+    dualTask: False
+
+
+job_name: DeepCluster-Train-${now:%Y-%m-%d} # prefix name for saving the experiment file.
+model_name: SiamEncFusionSkipKPConv_DC #SiameseKPConv_DC #SiameseKPConv_DC_dualT SiamEncFusionSkipKPConv_DC  SiamEncFusionSkipKPConv_DC_dualT# Name of the specific model to load
+update_lr_scheduler_on: "on_epoch" # ["on_epoch", "on_num_batch", "on_num_sample"]
+selection_stage: ""
+pretty_print: True
+eval_frequency: 500
+
+tracker_options: # Extra options for the tracker
+  full_pc: False
+  full_res: False
+  make_submission: False
+  track_boxes: False
+  rd_eq_sampling: True # for metric computation random sampling

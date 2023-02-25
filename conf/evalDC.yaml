@@ -1,0 +1,31 @@
+num_workers: 10
+batch_size: 10
+cuda: 0
+weight_name: "latest" # Used during resume, select with model to load from [miou, macc, acc, miou_ch..., latest]
+enable_cudnn: True
+checkpoint_dir: "/gpfswork/rech/rin/utf14pr/dev/torch-points3d/outputs/DeepCluster-Train-2022-12-26/DeepCluster-Train-2022-12-26-SiamEncFusionSkipKPConv_DC-20221226_123623/" #"/share/home/degelis"   #"/gpfswork/rech/rin/utf14pr/"
+model_name: SiamEncFusionSkipKPConv_DC
+precompute_multi_scale: False # Compute multiscate features on cpu for faster training / inference
+enable_dropout: False
+voting_runs: 1
+
+deepclustering: #deep cluster parameters
+    type:  Kmeans
+    nb_cluster_cd: 1000
+    nb_cluster_seg: 4
+    kmeans_n_iter: 20
+#    seed: 1234
+    num_init_batches: 50 # for mini-batch k-means :  nb of initial batch to compute before launching the first kmeans
+    num_batches: 50 # for mini-batch k-means : nb of batch between each kmeans
+    dualTask: False
+    map_pclust_gt: ""# "/gpfswork/rech/rin/utf14pr/dev/torch-points3d/outputs/DeepCluster-Train-2022-10-19/DeepCluster-Train-2022-10-19-SiameseKPConv_DC-20221019_120658/plabel_map.txt" #"/gpfswork/rech/rin/utf14pr/dev/torch-points3d/outputs/DeepCluster-Train-2022-10-14/DeepCluster-Train-2022-10-14-SiameseKPConv_DC-20221014_110053/plabel_map.txt"
+
+tracker_options: # Extra options for the tracker
+  full_pc: True
+  full_res: True
+  save_pc: True
+  name_test: "DeepCluster/"
+
+hydra:
+  run:
+    dir: ${checkpoint_dir}/eval/${now:%Y-%m-%d_%H-%M-%S}
