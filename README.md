@@ -12,6 +12,9 @@ This Git project is built upon Torch-Point3D depository to share code for DeepCl
 
 DC3DCD-V2 codes are also available please refer to the discussion of our paper for more details.
 
+For handcrafted feature extraction, all codes are available in the folder HandCraftedFeatureEctraction. 
+
+
 <p align="center">
   <img width="40%" src="https://raw.githubusercontent.com/nicolas-chaulet/torch-points3d/master/docs/logo.png" />
 </p>
