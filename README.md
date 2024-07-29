@@ -4,7 +4,7 @@ Iris de Gélis, Sébastien Lefèvre and Thomas Corpetti (ISPRS Journal, 2023)
 de Gélis, I., Lefèvre, S., & Corpetti, T. (2023). DC3DCD: Unsupervised learning for multiclass 3D point cloud change detection. ISPRS Journal of Photogrammetry and Remote Sensing, 206, 168-183.
 
 
-This Git project is built upon Torch-Point3D depository to share code for DeepCluster 3D Change Detection (DC3DCD) weakly supervised networks for 3D point clouds change segmentation based on Siamese KPConv and Encoder Fusion SiamKPConv. See our up-coming paper for more details. 
+This Git project is built upon Torch-Point3D depository to share code for DeepCluster 3D Change Detection (DC3DCD) weakly supervised networks for 3D point clouds change segmentation based on Siamese KPConv and Encoder Fusion SiamKPConv. See our paper for more details. 
 
 <p align="center">
    <img src="docs/imgs/DC3DCD.png" >      
